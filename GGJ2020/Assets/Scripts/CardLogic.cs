@@ -30,5 +30,7 @@ public enum CardSprite
 {
 	BIRD,
 	MUSHROOM,
-	GOBLIN
+	GOBLIN,
+	WORM,
+	SCORPION
 }

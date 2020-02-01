@@ -13,6 +13,7 @@ public class Card : ScriptableObject
 	public CardSprite sprite;
 	public string leftQuote;
 	public string rightQuote;
+    public string dialogue;  
 
     public void Left()
     {

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Goblin1
   m_EditorClassIdentifier: 
   cardID: 0
-  cardName: Generic Goblin Action
+  cardName: Goblin
   sprite: 2
   leftQuote: You are swiping to the left
   rightQuote: You are swiping to the right
+  dialogue: I'm a goblin!
