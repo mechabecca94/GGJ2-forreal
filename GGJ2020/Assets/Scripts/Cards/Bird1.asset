@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Bird1
   m_EditorClassIdentifier: 
   cardID: 0
-  cardName: Bird
+  cardName: bird
   sprite: 0
-  leftQuote: You are swiping to the left
-  rightQuote: You are swiping to the right
-  dialogue: I'm a bird!
+  leftQuote: No
+  rightQuote: Yes
+  dialogue: Should you hire the bird?

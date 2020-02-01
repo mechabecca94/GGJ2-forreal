@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Worm1
   m_EditorClassIdentifier: 
   cardID: 0
-  cardName: Worm
+  cardName: worm
   sprite: 3
-  leftQuote: You are swiping to the left
-  rightQuote: You are swiping to the right
-  dialogue: I'm a worm!
+  leftQuote: No
+  rightQuote: Yes
+  dialogue: Should you hire the worm?
