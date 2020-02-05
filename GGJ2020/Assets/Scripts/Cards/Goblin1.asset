@@ -15,6 +15,7 @@ MonoBehaviour:
   cardID: 0
   cardName: Goblin
   sprite: 2
-  leftQuote: You are swiping to the left
-  rightQuote: You are swiping to the right
-  dialogue: I'm a goblin!
+  leftQuote: No
+  rightQuote: Yes
+  dialogue: Sweating goblin
+  cardPrompt: I am good with computers.

@@ -14,6 +14,7 @@ public class Card : ScriptableObject
 	public string leftQuote;
 	public string rightQuote;
     public string dialogue;  
+    public string cardPrompt;
 
     public void Left()
     {

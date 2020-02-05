@@ -19,14 +19,20 @@ public class GameLogic : MonoBehaviour
     public float fSideTrigger;
     float alphaText;
     public Color textColor;
+    public Color actionBackgroundColor;
     Vector3 pos;
     public float divideValue;
+    public float ftransparency = 0.7f;
     ////////////UI////////////
     public TMP_Text actionQuote; //text on the card
     public TMP_Text characterDialogue;
+    public TMP_Text cardPromptQuote; //text on the card
+    public SpriteRenderer actionBackground;
+
     ////////////Card variables////////////
     public string leftQuote;
     public string rightQuote;
+    public string cardPrompt;
     public Card currentCard;
     public Card testCard;
 
@@ -36,7 +42,8 @@ public class GameLogic : MonoBehaviour
        origin = new Vector2(card.transform.position.x, card.transform.position.y); // so that the card snaps to beginning
     }
     void UpdateDialogue(){
-        actionQuote.color = textColor;
+        actionQuote.color = textColor; // set this in game manager
+        actionBackground.color = actionBackgroundColor;
         if(card.transform.position.x < 0) //left dialogue update
         {
               textColor.a = Mathf.Min((Mathf.Abs(card.transform.position.x)/divideValue), 1);
@@ -51,6 +58,8 @@ public class GameLogic : MonoBehaviour
     void Update()
     {   
         textColor.a = Mathf.Min((Mathf.Abs(card.transform.position.x) - fSideMargin) /divideValue, 1);
+        actionBackgroundColor.a = Mathf.Min((Mathf.Abs(card.transform.position.x) - fSideMargin) /divideValue, ftransparency);
+
 		/////////////////////TEXT DIALOGUE HANDLING///////////////////////////////////
         if(card.transform.position.x > fSideTrigger) //if the card reaches to the left trigger and mouse up
         {
@@ -102,6 +111,7 @@ public class GameLogic : MonoBehaviour
     	leftQuote = card.leftQuote;
     	rightQuote = card.rightQuote;
     	currentCard = card;
+        cardPromptQuote.text = card.cardPrompt;
         characterDialogue.text = card.dialogue;
     }
 

@@ -33,4 +33,5 @@ public enum CardSprite
 	GOBLIN,
 	WORM,
 	SCORPION
+	//make sure sprite elements are uploaded in this order to gamemanager!
 }

@@ -15,6 +15,7 @@ MonoBehaviour:
   cardID: 0
   cardName: Bird
   sprite: 0
-  leftQuote: You are swiping to the left
-  rightQuote: You are swiping to the right
-  dialogue: I'm a bird!
+  leftQuote: You're fired!
+  rightQuote: You're hired!
+  dialogue: Smiling bird
+  cardPrompt: Rrraaggrrrhhhg! Blaargh!

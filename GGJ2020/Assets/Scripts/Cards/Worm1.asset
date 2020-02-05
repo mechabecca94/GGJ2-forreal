@@ -15,6 +15,7 @@ MonoBehaviour:
   cardID: 0
   cardName: Worm
   sprite: 3
-  leftQuote: You are swiping to the left
-  rightQuote: You are swiping to the right
-  dialogue: I'm a worm!
+  leftQuote: The door is that way
+  rightQuote: Can you start Tuesday?
+  dialogue: Wiggly worm
+  cardPrompt: 'I am highly adaptable in new situations. '

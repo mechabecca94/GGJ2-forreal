@@ -15,6 +15,7 @@ MonoBehaviour:
   cardID: 0
   cardName: Mushroom
   sprite: 1
-  leftQuote: You are swiping to the left
-  rightQuote: You are swiping to the right
-  dialogue: I'm a mushroom!
+  leftQuote: Nope
+  rightQuote: Yus
+  dialogue: Perplexed mushroom
+  cardPrompt: My greatest strength? CRUSHING enemies!

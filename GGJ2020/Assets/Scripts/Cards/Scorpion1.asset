@@ -15,6 +15,7 @@ MonoBehaviour:
   cardID: 0
   cardName: Scorpion
   sprite: 4
-  leftQuote: You are swiping to the left
-  rightQuote: You are swiping to the right
-  dialogue: I'm a scorpion!
+  leftQuote: Get out of my office
+  rightQuote: We offer healthcare
+  dialogue: Out of breath scorpion
+  cardPrompt: I live three hours away.
