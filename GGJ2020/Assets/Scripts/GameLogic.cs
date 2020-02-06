@@ -13,6 +13,7 @@ public class GameLogic : MonoBehaviour
     public SpriteRenderer sr; //controls sprite being draw
     public ResourceManager resourceManager; //stores the info on what card to be used
     public Vector2 origin; // where the card is on run
+    public Vector3 cardRotation;
     /////////////Tweaking variables///////////
     public float fMovingSpeed = 1f;
     public float fSideMargin;
@@ -22,7 +23,9 @@ public class GameLogic : MonoBehaviour
     public Color actionBackgroundColor;
     Vector3 pos;
     public float divideValue;
+    public float backgroundDivideValue;
     public float ftransparency = 0.7f;
+    public float fRotationCoefficient;
     ////////////UI////////////
     public TMP_Text actionQuote; //text on the card
     public TMP_Text characterDialogue;
@@ -39,7 +42,7 @@ public class GameLogic : MonoBehaviour
     void Start()
     {
     	LoadCard(testCard);
-       origin = new Vector2(card.transform.position.x, card.transform.position.y); // so that the card snaps to beginning
+     //  origin = new Vector2(card.transform.position.x, card.transform.position.y); // so that the card snaps to beginning
     }
     void UpdateDialogue(){
         actionQuote.color = textColor; // set this in game manager
@@ -57,8 +60,9 @@ public class GameLogic : MonoBehaviour
 
     void Update()
     {   
-        textColor.a = Mathf.Min((Mathf.Abs(card.transform.position.x) - fSideMargin) /divideValue, 1);
-        actionBackgroundColor.a = Mathf.Min((Mathf.Abs(card.transform.position.x) - fSideMargin) /divideValue, ftransparency);
+        textColor.a = Mathf.Min((Mathf.Abs(card.transform.position.x) - fSideMargin) / divideValue, 1);
+        actionBackgroundColor.a = Mathf.Min((Mathf.Abs(card.transform.position.x) - fSideMargin) /backgroundDivideValue, ftransparency);
+
 
 		/////////////////////TEXT DIALOGUE HANDLING///////////////////////////////////
         if(card.transform.position.x > fSideTrigger) //if the card reaches to the left trigger and mouse up
@@ -99,9 +103,13 @@ public class GameLogic : MonoBehaviour
         else // if the card is not moving it goes to original position
         {
         	card.transform.position = Vector2.MoveTowards(transform.position, origin, 1);
+            card.transform.eulerAngles = new Vector3(0,0,0);
         }
+        //////////////////////CARD ROTATION///////////////////////////////////
+        card.transform.eulerAngles = new Vector3(0,0,card.transform.position.x * fRotationCoefficient);
 
     }
+
 
         //////////////////////CARD LOADER///////////////////////////////////
 
