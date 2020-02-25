@@ -9,13 +9,14 @@ public class GameLogic : MonoBehaviour
 {
 	//////////////Gameobjects////////////////
     public GameObject card;
+    public GameObject pendingCardGameObject;
     public CardLogic cl; //checks for mouse over sprite using CardLogic
     public SpriteRenderer sr; //controls sprite being draw
     public ResourceManager resourceManager; //stores the info on what card to be used
     public Vector2 origin; // where the card is on run
-    public Vector3 cardRotation;
     /////////////Tweaking variables///////////
     public float fMovingSpeed = 1f;
+    public float fRotatingSpeed;
     public float fSideMargin;
     public float fSideTrigger;
     float alphaText;
@@ -38,6 +39,12 @@ public class GameLogic : MonoBehaviour
     public string cardPrompt;
     public Card currentCard;
     public Card testCard;
+
+   ////////////Substituting the card////////////
+    public bool isSubstituting = false;
+    public Vector3 cardRotation; // default one
+    public Vector3 currentRotation; // the current rotation of the card
+    public Vector3 initRotation; //initial rotation
 
     void Start()
     {
@@ -99,14 +106,23 @@ public class GameLogic : MonoBehaviour
         {
             Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition); // get x y of mouse
             card.transform.position = pos; //and assign that x y to our card so it moves
+            card.transform.eulerAngles = new Vector3(0,0,card.transform.position.x * fRotationCoefficient);
         }
-        else // if the card is not moving it goes to original position
+        else if (!isSubstituting)// if the card is not moving it goes to original position
         {
-        	card.transform.position = Vector2.MoveTowards(transform.position, origin, 1);
+            card.transform.position = Vector2.MoveTowards(card.transform.position, origin, fMovingSpeed);
             card.transform.eulerAngles = new Vector3(0,0,0);
         }
-        //////////////////////CARD ROTATION///////////////////////////////////
-        card.transform.eulerAngles = new Vector3(0,0,card.transform.position.x * fRotationCoefficient);
+        else if(isSubstituting)
+        {
+            card.transform.eulerAngles = Vector3.MoveTowards(card.transform.eulerAngles, cardRotation, fRotatingSpeed);
+
+        }
+
+        if(card.transform.eulerAngles == cardRotation)
+        {
+            isSubstituting = false;
+        }
 
     }
 
@@ -115,12 +131,16 @@ public class GameLogic : MonoBehaviour
 
         public void LoadCard(Card card)
     {
+        currentCard = card;
     	sr.sprite = resourceManager.sprites[(int)card.sprite];
     	leftQuote = card.leftQuote;
     	rightQuote = card.rightQuote;
-    	currentCard = card;
         cardPromptQuote.text = card.cardPrompt;
         characterDialogue.text = card.dialogue;
+        //Resetting the position of the cards
+       //  //Initialize of the substitution
+        isSubstituting = true;
+
     }
 
         //////////////////////CARD CHOOSER///////////////////////////////////
@@ -128,7 +148,11 @@ public class GameLogic : MonoBehaviour
     {
         int rollDice = Random.Range(0, resourceManager.cards.Length);
         LoadCard(resourceManager.cards[rollDice]); 
+        card.transform.position = origin;
+        card.transform.eulerAngles = new Vector3(0,0,0);
+        card.transform.eulerAngles = initRotation;
     }
+
 }
 
 
